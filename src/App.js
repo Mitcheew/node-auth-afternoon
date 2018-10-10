@@ -27,7 +27,14 @@ class App extends Component {
   }
 
   login() {
-    alert('set up your login function here')
+    let{
+      REACT_APP_AUTH0_DOMAIN,
+      REACT_APP_AUTH0_CLIENT_ID
+    } = process.env
+
+    let uri = `${encodeURIComponent(window.location.origin)}/auth/callback`
+
+    window.location = `https://${REACT_APP_AUTH0_DOMAIN}/authorize?client_id=${REACT_APP_AUTH0_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri${uri}&response_type=code`
   }
 
   logout() {
